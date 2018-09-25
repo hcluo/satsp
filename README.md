@@ -20,9 +20,9 @@ Basic usage:
 ```
 from satsp import solver
 
-cities = [[1, 5.0, 7.0],
+cities = [[1, 6.0, 7.0],
           [2, 4.0, 9.0],
-	  [3, 7.0, 3.0]]
+	  [3, 7.0, 1.0]]
 
 solver.Solve(cities)
 ```
