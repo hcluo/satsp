@@ -32,9 +32,15 @@ The three columns in cities represent id, x coordinate and y coordinate.
 
 Advanced Usage:
 ```
+<<<<<<< HEAD
 solver.Solve(city_list = None, dist_matrix = None, start_temp = None, \
           stop_temp = None, alpha = None, epochs = None, epoch_length = None, \
           epoch_length_factor = 1.00, stopping_count = 100, screen_output = True)
+=======
+solver.Solve(city_list = None, dist_matrix = None, start_temp = None, 
+          stop_temp = None, alpha = None, epochs = None, epoch_length = None, 
+          epoch_length_factor = 1.00, stopping_count = 100, screen_output = True):
+>>>>>>> 72d2547a53f52e0452304c1e66e1970875cd7d85
 ```
 Arguments of ```solver.Solve()``` function:
 
