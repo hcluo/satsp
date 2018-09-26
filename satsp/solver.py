@@ -1,5 +1,7 @@
 from satsp.SAclass import SimulatedAnnealing
 
+sa_obj = None
+
 def Solve(city_list = None, dist_matrix = None, start_temp = None, \
           stop_temp = None, alpha = None, epochs = None, epoch_length = None, \
           epoch_length_factor = 1.00, stopping_count = 100, screen_output = True):
@@ -21,12 +23,14 @@ def Solve(city_list = None, dist_matrix = None, start_temp = None, \
 # @return the total distance of the best TSP tour found
     
     try:
+        global sa_obj
         sa_obj = SimulatedAnnealing(city_list, dist_matrix, start_temp, \
                                     stop_temp, alpha, epochs, epoch_length, \
                                     epoch_length_factor, stopping_count, \
                                     screen_output)
     except Exception as e:
         print("Cannot initialize instance. " + str(e))
+        sa_obj = None
         return
     
     if sa_obj.screen_output:
@@ -35,15 +39,52 @@ def Solve(city_list = None, dist_matrix = None, start_temp = None, \
     try:
         sa_obj.Annealing()
     except KeyboardInterrupt:
-        # Output current best if interrupted by user
+        
         if sa_obj.screen_output:
-            sa_obj.PrintSolution()
-        return sa_obj.incumbent_dist
+            print("\nSimulated Annealing terminated after " + \
+                  str(sa_obj.epoch_count) + " epochs.")
+        return
     except Exception as e:
         print("Cannot process annealing. " + str(e))
+        sa_obj = None
         return
         
-    if sa_obj.screen_output:
-        sa_obj.PrintSolution()
-    return sa_obj.incumbent_dist
+    return
+
     
+def GetBestDist():
+    if sa_obj is None:
+        print("Instance not solved correctly.")
+        return
+    return sa_obj.incumbent_dist
+
+def GetBestTour():
+    if sa_obj is None:
+        print("Instance not solved correctly.")
+        return
+    return sa_obj.GetBestTour()
+
+def PrintBestTour():
+    if sa_obj is None:
+        print("Instance not solved correctly.")
+        return
+    if sa_obj.city_list is None:
+        print("Coordinates not provided.")
+        return
+    sa_obj.PrintBestTour()
+
+def PrintConvergence():
+    if sa_obj is None:
+        print("Instance not solved correctly.")
+        return
+    sa_obj.PrintConvergence()
+    
+def PrintSolution():
+    if sa_obj is None:
+        print("Instance not solved correctly.")
+        return
+    print("Best TSP tour length: ", GetBestDist())
+    sa_obj.PrintConvergence()
+    
+    print("Best TSP tour: ", GetBestTour())
+    PrintBestTour()

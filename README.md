@@ -25,6 +25,7 @@ cities = [[1, 6.0, 7.0],
 	  [3, 7.0, 1.0]]
 
 solver.Solve(cities)
+solver.PrintSolution()
 ```
 
 The three columns in cities represent id, x coordinate and y coordinate.
@@ -33,9 +34,9 @@ Advanced Usage:
 ```
 solver.Solve(city_list = None, dist_matrix = None, start_temp = None, \
           stop_temp = None, alpha = None, epochs = None, epoch_length = None, \
-          epoch_length_factor = 1.00, stopping_count = 100, screen_output = True):
+          epoch_length_factor = 1.00, stopping_count = 100, screen_output = True)
 ```
-Arguments:
+Arguments of ```solver.Solve()``` function:
 
 *city_list*: a N*3 matrix containing three columns representing id, x coordinate and y coordinate of the N cities. Can be ```None```.
 
@@ -56,7 +57,13 @@ Arguments:
 *stopping_count*: the number of epochs after which the program will stop if no improvement is made. This stopping condition is only activated if the number of total epochs is neither specified by the user nor can be calculated by the program. Default is 100.
 *screen_output*: Parameters of SA, progress of the algorithm and the results will be displayed if set to ```True```. Default is ```True```.
 
-Return: the distance of the best TSP tour found
+###
+Other functions provided by ```solver```:
+```solver.GetBestDist()```: return the total distance of the best TSP tour
+```solver.GetBestTour()```: return a list of cities of the best TSP tour
+```solver.PrintBestTour()```: Output a picture drawing the best TSP tour
+```solver.PrintConvergence()```: Plot the convergence of the distances at the end of each epoch
+
 
 ## Algorithm
 This package implements the simulated annealing (SA) metaheuristic to solve TSP. A sketch of the algorithm is as follows:

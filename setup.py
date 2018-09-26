@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="satsp",
-    version="0.8",
+    version="0.9",
     url="https://github.com/hcluo/satsp",
 	
     author="Haochen Luo",

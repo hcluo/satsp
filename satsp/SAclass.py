@@ -228,26 +228,19 @@ class SimulatedAnnealing:
                     self.reset_counter += 1
                 if self.reset_counter == self.stopping_count:
                     break
-        
-    def PrintSolution(self):
+                
         print("\nSimulated Annealing terminated after " + str(self.epoch_count) + \
                 " epochs.")
-        print("Best TSP tour length: ", self.incumbent_dist)
-		
-        # Plot the convergence of SA
-        plt.plot(self.temperature,self.convergence)
-        plt.title("Distance vs. Temperature",fontsize=18)
-        plt.xlabel("Temperature",fontsize=18)
-        plt.ylabel("Distance",fontsize=18)
-        plt.xlim(self.start_temp, self.current_temp)
-		
-        plt.show()
+
+    def GetBestTour(self):
         if self.city_list is None:
             incumbent_tour_cities = [i + 1 for i in self.incumbent_tour]
         else:
             incumbent_tour_cities = [self.city_list.iloc[i,0] for i in self.incumbent_tour]
-        print("Best TSP tour: ", incumbent_tour_cities)
+        return incumbent_tour_cities
+        
 		
+    def PrintBestTour(self):
         # Print the best TSP tour
         if self.city_list is not None:
             x = []
@@ -264,4 +257,14 @@ class SimulatedAnnealing:
 		
             plt.axis('off')
             plt.show()
-
+    
+    def PrintConvergence(self):
+        # Plot the convergence of SA
+        plt.plot(self.temperature,self.convergence)
+        plt.title("Distance vs. Temperature",fontsize=18)
+        plt.xlabel("Temperature",fontsize=18)
+        plt.ylabel("Distance",fontsize=18)
+        plt.xlim(self.start_temp, self.current_temp)
+		
+        plt.show()
+    
