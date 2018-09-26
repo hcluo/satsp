@@ -55,7 +55,7 @@ Arguments of ```solver.Solve()``` function:
 *epoch_length_factor*: the rate at which epoch length increases at each epoch. Should be greater than or equal to 1. Default is 1.00. A small value is recommended for large instances.
 
 *stopping_count*: the number of epochs after which the program will stop if no improvement is made. This stopping condition is only activated if the number of total epochs is neither specified by the user nor can be calculated by the program. Default is 100.
-*screen_output*: Parameters of SA, progress of the algorithm and the results will be displayed if set to ```True```. Default is ```True```.
+*screen_output*: Parameters of SA and progress of the algorithm will be displayed if set to ```True```. Default is ```True```.
 
 ###
 Other functions provided by ```solver```:
